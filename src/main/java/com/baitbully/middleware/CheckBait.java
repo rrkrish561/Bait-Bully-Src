@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +49,12 @@ public class CheckBait implements RequestStreamHandler {
 	        responseBody.put("exception", e);
 		}
 	    
-	    ArrayList<String> titles = getTitles(url); 
+	    ArrayList<String> titles = new ArrayList<String>();;
+		try {
+			titles = getTitles(url);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 	    
 	    ArrayList<String> results = makePrediction(titles,projectId, computeRegion,modelId);
 	    JSONArray jsonArray = new JSONArray();
