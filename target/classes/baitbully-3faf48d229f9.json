@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "baitbully",
+  "private_key_id": "3faf48d229f9d09f6ba593b817b076ea4e47a19b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQClkUEwx4BKLu9j\nR0x2ZXO/BIcgfWyH2tBc+nNL1WKnKrTgVlvmmq5bUvCfpNEY4aSptY6HhsOtfjfb\n5Nr3yfcEk0BcvD+ySYm+d9KRVx/fg1V8pF18frZcfiEtHzrmeFZnJty6ZpVQURK8\nz9UWXB4Xf5VtT8wkxhEWNEqjiFoTalHfBDrzRYn2FD/16MmEAo0u073zfKs13b17\n1faAH79ZTImqjboUIl0dkuuSChTULJpA88Gz7HU/DXkjn1Ve3UieXMWAIlML16/A\nEMRO8ru4/R624t8oRUbKMZ/Cta7wgtvMyBDh3qeJKjBy1fBA5m1eouKr2drJg4vd\nH3czX1gfAgMBAAECggEACYrLFowdwGjFfDozCNnRzdVteKzLd5lfvxQVVzs60dNo\nx35cRcVuPUfII9mxNJcAnfu5DxkjWvLpnKWrQKYZTS0aNwRuD8QkPHl8bDFfKv5P\nPxbcAN2ISUfHRen4XSl1u8Ey7hbhp4mpcLKLuRuuOLPhZ7W2WGI5jUcoDBYpY6TG\n1AIYPmUQFxBHz4m1PCoCn+/9hLldxzifb4lBErCzMK0lGNoFvQVquUpGNlcyUmjW\n/LSop2703zTdWybcZhblwDVJTXdW7Zxqkp90si4FfVbhCIzL1GHy8BlTPZwSvM6t\nHmG9TTF4xymNY5jZFiSzEAjnEz/wSU9Szmupjb0EZQKBgQDoIzqSdC9cLOQV1b8G\n0eSvDZ9pvSJILtQOz3bK0XqdB6hHiupNterVgtT+Ra4Gv/koNgUdmTUSr34q7Vl/\np6j+DzVUw68dzc31bnlg0fXtuSlREg9fd5xBpFubnqcF6ZKJm/vJqHd6dJqnn+fr\ntcjao/vXe2FCZSOOttHZ3F69mwKBgQC2ljXvW5ydg6aslNAIVqDeGW+oM0+Yulrh\nxekoLNV3kfySxz4SCfI5jVltYA4REwD/16Yrgm8/7ecXt+GfkLbK+cO58DjP0wrc\nXEHrtCnZ7IbRQR/YEpJ4J7WKpgFB8Jd/aggV7YrNM2rdG5/tJb4b6fhLP5yKq7da\nJmnrg345zQKBgQDjQbHStJm01GHKmoGzzIHjeiOpIbbREb8abLJwJhmyZ0+wEmgF\nAeZPdhDMiSywgPoMCq6BZn6Vt2Z94fTvSxTe+8aLIDNsqxFJiAid546qVs4DBvoz\nzOYVQTFJrUz4Ncz2mNUre5jUMhlBpwMmN8XVfhpLvwbdOCRST9orPVkmpwKBgQCf\nPAMPm2LL0BvU2PdQvlQPPjmthAo/1Q4bZmF/oxIL9GpEi7SrQLdZz9cU1zeNVniB\np02JFnj1VQI8IiaH5Uo1XHuAtmqlfJU1NtRavkXdgzTUW6ps402PsnnV0A66ths5\niHxCu2ZYrSXebRAdXtQcPgFHhtN78GO4IFYxifzUZQKBgBpbJ5aCV4h0+7iGCfTo\n1OzqzmXn/zIn6gv0dE5d6gvcjRthSBL5K6VwCJIoyAOZxVuOYDVlmgdZkMfKI8bc\nIbok1iSd9xtEe06LDU/00zr5Dw/Hg+yrLRrPG8Rio9/YGTH6moS9HdRTwy7g6no0\njB7fMNlOYXTeV3E6xG+959Mu\n-----END PRIVATE KEY-----\n",
+  "client_email": "big-bruh@baitbully.iam.gserviceaccount.com",
+  "client_id": "107064191111269094706",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/big-bruh%40baitbully.iam.gserviceaccount.com"
+}

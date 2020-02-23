@@ -37,7 +37,7 @@ public class CheckBait implements RequestStreamHandler {
 		JSONParser parser = new JSONParser();
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 	    JSONObject responseBody = new JSONObject();
-	    //JSONArray titles = new JSONArray();
+
 	    String url = null;
 	    try {
 			JSONObject event = (JSONObject) parser.parse(reader);
@@ -46,46 +46,57 @@ public class CheckBait implements RequestStreamHandler {
 			responseBody.put("statusCode", 400);
 	        responseBody.put("exception", e);
 		}
-	    ArrayList<String> titles = getTitles(url); 
+	    // ArrayList<String> titles = getTitles(url); 
+	    ArrayList<String> titles = new ArrayList<String>();
 	    
-	    ArrayList<String> results = makePrediction("Moms are single and ready to mingle",projectId, computeRegion,modelId);
-	    responseBody.put("results", results.get(0));
+	    titles.add("Britain goes to war with america");
+	    titles.add("Milfs near you");
+	    titles.add("Manatees are dying");
+	    titles.add("Listen to Dwayne Wade make his Rap Debut on Rick Ross");
+	    
+	    ArrayList<String> results = makePrediction(titles,projectId, computeRegion,modelId);
+	    JSONArray jsonArray = new JSONArray();
+	    
+	    for(int i = 0; i < results.size(); i++) {
+	    	jsonArray.add(results.get(i));
+	    }
+	    
+	    responseBody.put("results", jsonArray);
 
 	    OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
 	    writer.write(responseBody.toString());
 	    writer.close();
     }
 	
-	public ArrayList<String> makePrediction(String title, String projectId, String computeRegion, String modelId) throws IOException {
-		ArrayList<String> results = null;
+	public ArrayList<String> makePrediction(ArrayList<String> titles, String projectId, String computeRegion, String modelId) throws IOException {
+		ArrayList<String> results = new ArrayList<String>();
 		try (PredictionServiceClient predictionClient = PredictionServiceClient.create()) {
-			
 		    // Get full path of model
 			ModelName name = ModelName.of(projectId, computeRegion, modelId);
+			
+			for(int i = 0; i < titles.size();i++) {
+				String content = titles.get(i);
+				
+				TextSnippet textSnippet =
+				        TextSnippet.newBuilder().setContent(content).setMimeType("text/plain").build();
+			    ExamplePayload payload = ExamplePayload.newBuilder().setTextSnippet(textSnippet).build();
 
-		    // Read the file content for prediction.
-		    String content = title;
+			    // params is additional domain-specific parameters.
+			    // currently there is no additional parameters supported.
+			    Map<String, String> params = new HashMap<String, String>();
+			    PredictResponse response = predictionClient.predict(name, payload, params);
 
-		    // Set the payload by giving the content and type of the file.
-		    TextSnippet textSnippet =
-		        TextSnippet.newBuilder().setContent(content).setMimeType("text/plain").build();
-		    ExamplePayload payload = ExamplePayload.newBuilder().setTextSnippet(textSnippet).build();
-
-		    // params is additional domain-specific parameters.
-		    // currently there is no additional parameters supported.
-		    Map<String, String> params = new HashMap<String, String>();
-		    PredictResponse response = predictionClient.predict(name, payload, params);
-
-		    //System.out.println("Prediction results:");
-		      
-		      for (AnnotationPayload annotationPayload : response.getPayloadList()) {
-//		        System.out.println("Predicted Class name :" + annotationPayload.getDisplayName());
-//		        System.out.println(
-//		            "Predicted Class Score :" + annotationPayload.getClassification().getScore());
-		    	results.add(annotationPayload.getDisplayName());
-		      }
-		    }
-		
+			    //System.out.println("Prediction results:");
+			    AnnotationPayload annotationPayload = response.getPayload(0);
+				      
+				     
+		        System.out.println("Predicted Class name :" + annotationPayload.getDisplayName());
+		        System.out.println(
+		            "Predicted Class Score :" + annotationPayload.getClassification().getScore());
+		        results.add(annotationPayload.getDisplayName());
+			}
+		}
+			
 		return results;
 	}
 	
