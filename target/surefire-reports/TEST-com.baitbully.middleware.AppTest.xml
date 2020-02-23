@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.baitbully.middleware.AppTest" time="0" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.baitbully.middleware.AppTest" time="0.002" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\bin"/>
@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\java-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf17498941419850844482.tmp"/>
+    <property name="classworlds.conf" value="C:\java-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf4845797722378076406.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_241\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jdk-12.0.2/bin/server;C:/Program Files/Java/jdk-12.0.2/bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Java\jdk-12.0.2\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\Program Files\Calibre2\;C:\Program Files\MATLAB\R2019b\bin;C:\Go\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\Raghu Radhakrishnan\AppData\Local\Microsoft\WindowsApps;;C:\Users\Raghu Radhakrishnan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Raghu Radhakrishnan\go\bin;C:\Windows\system32;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -61,5 +61,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.baitbully.middleware.AppTest" name="testApp" time="0"/>
+  <testcase classname="com.baitbully.middleware.AppTest" name="testApp" time="0.002"/>
 </testsuite>

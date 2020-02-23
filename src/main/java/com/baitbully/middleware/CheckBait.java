@@ -34,19 +34,20 @@ public class CheckBait implements RequestStreamHandler {
 		String projectId = "baitbully";
 		String computeRegion = "us-central1";
 		
-		
 		JSONParser parser = new JSONParser();
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 	    JSONObject responseBody = new JSONObject();
-	    JSONArray titles = new JSONArray();
-	    
+	    //JSONArray titles = new JSONArray();
+	    String url = null;
 	    try {
 			JSONObject event = (JSONObject) parser.parse(reader);
-			titles = (JSONArray) event.get("message");
+			url = (String) event.get("message");
 		} catch (ParseException e) {
 			responseBody.put("statusCode", 400);
 	        responseBody.put("exception", e);
 		}
+	    ArrayList<String> titles = getTitles(url); 
+	    
 	    ArrayList<String> results = makePrediction("Moms are single and ready to mingle",projectId, computeRegion,modelId);
 	    responseBody.put("results", results.get(0));
 
@@ -55,7 +56,7 @@ public class CheckBait implements RequestStreamHandler {
 	    writer.close();
     }
 	
-	public static ArrayList<String> makePrediction(String title, String projectId, String computeRegion, String modelId) throws IOException {
+	public ArrayList<String> makePrediction(String title, String projectId, String computeRegion, String modelId) throws IOException {
 		ArrayList<String> results = null;
 		try (PredictionServiceClient predictionClient = PredictionServiceClient.create()) {
 			
@@ -86,5 +87,11 @@ public class CheckBait implements RequestStreamHandler {
 		    }
 		
 		return results;
+	}
+	
+	public ArrayList<String> getTitles(String url) {
+		
+		
+		return null;
 	}
 }
