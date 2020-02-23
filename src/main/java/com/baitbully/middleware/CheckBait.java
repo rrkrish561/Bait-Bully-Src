@@ -90,8 +90,10 @@ public class CheckBait implements RequestStreamHandler {
 	}
 	
 	public ArrayList<String> getTitles(String url) {
-		
-		
+	   
+	   
 		return null;
 	}
+   
+   
 }
