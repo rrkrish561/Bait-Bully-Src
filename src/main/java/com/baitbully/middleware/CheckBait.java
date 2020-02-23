@@ -46,13 +46,8 @@ public class CheckBait implements RequestStreamHandler {
 			responseBody.put("statusCode", 400);
 	        responseBody.put("exception", e);
 		}
-	    // ArrayList<String> titles = getTitles(url); 
-	    ArrayList<String> titles = new ArrayList<String>();
 	    
-	    titles.add("Britain goes to war with america");
-	    titles.add("Milfs near you");
-	    titles.add("Manatees are dying");
-	    titles.add("Listen to Dwayne Wade make his Rap Debut on Rick Ross");
+	    ArrayList<String> titles = getTitles(url); 
 	    
 	    ArrayList<String> results = makePrediction(titles,projectId, computeRegion,modelId);
 	    JSONArray jsonArray = new JSONArray();
