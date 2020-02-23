@@ -28,6 +28,12 @@ import com.google.cloud.automl.v1beta1.PredictionServiceClient;
 import com.google.cloud.automl.v1beta1.TextSnippet;
 
 public class CheckBait implements RequestStreamHandler {
+	
+	private class CoupledData {
+		ArrayList<String> results;
+		ArrayList<Double> scores;
+	}
+	
 	@Override
 	public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context)
             throws IOException {
@@ -49,29 +55,33 @@ public class CheckBait implements RequestStreamHandler {
 	        responseBody.put("exception", e);
 		}
 	    
-	    ArrayList<String> titles = new ArrayList<String>();;
+	    ArrayList<String> titles = new ArrayList<String>();
 		try {
 			titles = getTitles(url);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
 	    
-	    ArrayList<String> results = makePrediction(titles,projectId, computeRegion,modelId);
-	    JSONArray jsonArray = new JSONArray();
+	    CoupledData results = makePrediction(titles,projectId, computeRegion,modelId);
+	    JSONArray jsonArrayResults = new JSONArray();
+	    JSONArray jsonArrayScores = new JSONArray();
 	    
-	    for(int i = 0; i < results.size(); i++) {
-	    	jsonArray.add(results.get(i));
+	    for(int i = 0; i < results.results.size(); i++) {
+	    	jsonArrayResults.add(results.results.get(i));
+	    	jsonArrayScores.add(results.scores.get(i));
 	    }
 	    
-	    responseBody.put("results", jsonArray);
+	    responseBody.put("results", jsonArrayResults);
+	    responseBody.put("scores", jsonArrayScores);
 
 	    OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
 	    writer.write(responseBody.toString());
 	    writer.close();
     }
 	
-	public ArrayList<String> makePrediction(ArrayList<String> titles, String projectId, String computeRegion, String modelId) throws IOException {
+	public CoupledData makePrediction(ArrayList<String> titles, String projectId, String computeRegion, String modelId) throws IOException {
 		ArrayList<String> results = new ArrayList<String>();
+		ArrayList<Double> scores = new ArrayList<Double>();
 		try (PredictionServiceClient predictionClient = PredictionServiceClient.create()) {
 		    // Get full path of model
 			ModelName name = ModelName.of(projectId, computeRegion, modelId);
@@ -91,18 +101,21 @@ public class CheckBait implements RequestStreamHandler {
 			    //System.out.println("Prediction results:");
 			    AnnotationPayload annotationPayload = response.getPayload(0);
 				      
-				     
+				System.out.println("Title:" + content);
 		        System.out.println("Predicted Class name :" + annotationPayload.getDisplayName());
 		        System.out.println(
 		            "Predicted Class Score :" + annotationPayload.getClassification().getScore());
 		        results.add(annotationPayload.getDisplayName());
+		        scores.add((double) annotationPayload.getClassification().getScore());
 			}
 		}
-			
-		return results;
+		CoupledData data = new CoupledData();
+		data.results = results;
+		data.scores = scores;
+		return data;
 	}
 	
-	public static ArrayList<String> getTitles(String url) throws Exception {
+	/*public static ArrayList<String> getTitles(String url) throws Exception {
       String html = getHTML(url);
       ArrayList<String> bruh = new ArrayList<>();
       int begin = 0;
@@ -119,6 +132,25 @@ public class CheckBait implements RequestStreamHandler {
          begin = stringStart;
       }
       return bruh;
+   }*/
+	
+	
+   public static ArrayList<String> getTitles(String url) throws Exception	{
+	   String html = getHTML(url);
+	   ArrayList<String> titles = new ArrayList<>();
+	   String key = "BNeawe vvjwJb AP7Wnd";
+	   String title = "";
+	   int stringStart;
+	   while (html.contains(key))	{
+		   stringStart = html.indexOf(key) + 2 + key.length();
+		   title = html.substring(stringStart, html.indexOf("<", stringStart));
+		   while(title.contains("&#")) {
+	            title = title.replaceAll(title.substring(title.indexOf("&#"), title.indexOf("&#") + 7 ), "'");
+	       }
+		   html = html.substring(stringStart + title.length());
+		   titles.add(title);
+	   }
+	   return titles;
    }
    
    public static String getHTML(String urlToRead) throws Exception {
